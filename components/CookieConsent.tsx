@@ -1,0 +1,4 @@
+'use client';
+import Link from 'next/link';import {useEffect,useState} from 'react';
+type Choice='accepted'|'essential'|null;
+export default function CookieConsent(){const[choice,setChoice]=useState<Choice>(null);useEffect(()=>setChoice((localStorage.getItem('jp-cookie-consent') as Choice)??null),[]);const choose=(value:Exclude<Choice,null>)=>{localStorage.setItem('jp-cookie-consent',value);setChoice(value)};if(choice)return <button className="cookie-settings" onClick={()=>setChoice(null)}>Cookie preferences</button>;return <aside className="cookie-banner" aria-label="Cookie preferences"><p>We use essential storage to remember this choice. Optional analytics are not active on this site.</p><p><Link href="/cookies">Cookie policy</Link></p><div><button className="btn btn-outline" onClick={()=>choose('essential')}>Essential only</button><button className="btn btn-pink" onClick={()=>choose('accepted')}>Accept</button></div></aside>}
