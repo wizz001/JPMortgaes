@@ -1,0 +1,1 @@
+import type{MetadataRoute}from'next';export default function sitemap():MetadataRoute.Sitemap{const paths=['','/mortgages','/properties','/about','/contact'];return paths.map(url=>({url,changeFrequency:'monthly',priority:url===''?1:.7}))}
